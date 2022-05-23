@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Данные по оборудованию">
+    <Key>
+      <PropertyRef Name="ID оборудования" />
+    </Key>
+    <Property Name="ID оборудования" Type="int" Nullable="false" />
+    <Property Name="Наименование оборудования" Type="varchar" MaxLength="100" />
+    <Property Name="Тип" Type="int" />
+    <Property Name="Серийный номер" Type="varchar" MaxLength="100" />
+    <Property Name="MAC-адрес" Type="varchar" MaxLength="100" />
+    <Property Name="IP-адрес" Type="varchar" MaxLength="100" />
+    <Property Name="Номер телефона" Type="varchar" MaxLength="100" />
+    <Property Name="Дата установки" Type="date" />
+  </EntityType>
+  <EntityType Name="Данные по подключению абонентов">
+    <Key>
+      <PropertyRef Name="Порт" />
+    </Key>
+    <Property Name="Порт" Type="int" Nullable="false" />
+    <Property Name="Оборудование" Type="int" />
+    <Property Name="Адрес" Type="varchar" MaxLength="100" />
+    <Property Name="Тип порта" Type="int" />
+    <Property Name="Имя" Type="varchar" MaxLength="100" />
+    <Property Name="Фамилия" Type="varchar" MaxLength="100" />
+    <Property Name="Отчество" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Пользователи">
+    <Key>
+      <PropertyRef Name="ID пользователя" />
+    </Key>
+    <Property Name="ID пользователя" Type="int" Nullable="false" />
+    <Property Name="Имя" Type="varchar" MaxLength="100" />
+    <Property Name="Фамилия" Type="varchar" MaxLength="100" />
+    <Property Name="Отчество" Type="varchar" MaxLength="100" />
+    <Property Name="Номер" Type="varchar" MaxLength="100" />
+    <Property Name="Пароль" Type="varchar" MaxLength="100" />
+    <Property Name="Почта" Type="varchar" MaxLength="100" />
+    <Property Name="Номер телефона" Type="varchar" MaxLength="20" />
+    <Property Name="Роль" Type="int" />
+  </EntityType>
+  <EntityType Name="Роли">
+    <Key>
+      <PropertyRef Name="ID Роли" />
+    </Key>
+    <Property Name="ID Роли" Type="int" Nullable="false" />
+    <Property Name="Наименование" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Тип оборудования">
+    <Key>
+      <PropertyRef Name="ID типа оборудования" />
+    </Key>
+    <Property Name="ID типа оборудования" Type="int" Nullable="false" />
+    <Property Name="Тип оборудования" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Тип порта">
+    <Key>
+      <PropertyRef Name="ID типа порта" />
+    </Key>
+    <Property Name="ID типа порта" Type="int" Nullable="false" />
+    <Property Name="Тип порта" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_Данные по оборудованию_Тип оборудования">
+    <End Role="Тип оборудования" Type="Self.Тип оборудования" Multiplicity="0..1" />
+    <End Role="Данные по оборудованию" Type="Self.Данные по оборудованию" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Тип оборудования">
+        <PropertyRef Name="ID типа оборудования" />
+      </Principal>
+      <Dependent Role="Данные по оборудованию">
+        <PropertyRef Name="Тип" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Данные по подключению абонентов_Данные по оборудованию">
+    <End Role="Данные по оборудованию" Type="Self.Данные по оборудованию" Multiplicity="0..1" />
+    <End Role="Данные по подключению абонентов" Type="Self.Данные по подключению абонентов" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Данные по оборудованию">
+        <PropertyRef Name="ID оборудования" />
+      </Principal>
+      <Dependent Role="Данные по подключению абонентов">
+        <PropertyRef Name="Оборудование" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Данные по подключению абонентов_Тип оборудования">
+    <End Role="Тип оборудования" Type="Self.Тип оборудования" Multiplicity="0..1" />
+    <End Role="Данные по подключению абонентов" Type="Self.Данные по подключению абонентов" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Тип оборудования">
+        <PropertyRef Name="ID типа оборудования" />
+      </Principal>
+      <Dependent Role="Данные по подключению абонентов">
+        <PropertyRef Name="Оборудование" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Данные по подключению абонентов_Тип порта">
+    <End Role="Тип порта" Type="Self.Тип порта" Multiplicity="0..1" />
+    <End Role="Данные по подключению абонентов" Type="Self.Данные по подключению абонентов" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Тип порта">
+        <PropertyRef Name="ID типа порта" />
+      </Principal>
+      <Dependent Role="Данные по подключению абонентов">
+        <PropertyRef Name="Тип порта" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Пользователи_Роли">
+    <End Role="Роли" Type="Self.Роли" Multiplicity="0..1" />
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Роли">
+        <PropertyRef Name="ID Роли" />
+      </Principal>
+      <Dependent Role="Пользователи">
+        <PropertyRef Name="Роль" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ModelContainer">
+    <EntitySet Name="Данные по оборудованию" EntityType="Self.Данные по оборудованию" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Данные по подключению абонентов" EntityType="Self.Данные по подключению абонентов" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Роли" EntityType="Self.Роли" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Тип оборудования" EntityType="Self.Тип оборудования" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Тип порта" EntityType="Self.Тип порта" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Данные по оборудованию_Тип оборудования" Association="Self.FK_Данные по оборудованию_Тип оборудования">
+      <End Role="Тип оборудования" EntitySet="Тип оборудования" />
+      <End Role="Данные по оборудованию" EntitySet="Данные по оборудованию" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Данные по подключению абонентов_Данные по оборудованию" Association="Self.FK_Данные по подключению абонентов_Данные по оборудованию">
+      <End Role="Данные по оборудованию" EntitySet="Данные по оборудованию" />
+      <End Role="Данные по подключению абонентов" EntitySet="Данные по подключению абонентов" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Данные по подключению абонентов_Тип оборудования" Association="Self.FK_Данные по подключению абонентов_Тип оборудования">
+      <End Role="Тип оборудования" EntitySet="Тип оборудования" />
+      <End Role="Данные по подключению абонентов" EntitySet="Данные по подключению абонентов" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Данные по подключению абонентов_Тип порта" Association="Self.FK_Данные по подключению абонентов_Тип порта">
+      <End Role="Тип порта" EntitySet="Тип порта" />
+      <End Role="Данные по подключению абонентов" EntitySet="Данные по подключению абонентов" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Пользователи_Роли" Association="Self.FK_Пользователи_Роли">
+      <End Role="Роли" EntitySet="Роли" />
+      <End Role="Пользователи" EntitySet="Пользователи" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

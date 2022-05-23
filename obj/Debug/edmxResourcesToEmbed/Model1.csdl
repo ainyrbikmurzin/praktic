@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Данные_по_оборудованию">
+    <Key>
+      <PropertyRef Name="ID_оборудования" />
+    </Key>
+    <Property Name="ID_оборудования" Type="Int32" Nullable="false" />
+    <Property Name="Наименование_оборудования" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Тип" Type="Int32" />
+    <Property Name="Серийный_номер" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MAC_адрес" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IP_адрес" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Номер_телефона" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Дата_установки" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Тип_оборудования" Relationship="Self.FK_Данные_по_оборудованию_Тип_оборудования" FromRole="Данные_по_оборудованию" ToRole="Тип_оборудования" />
+    <NavigationProperty Name="Данные_по_подключению_абонентов" Relationship="Self.FK_Данные_по_подключению_абонентов_Данные_по_оборудованию" FromRole="Данные_по_оборудованию" ToRole="Данные_по_подключению_абонентов" />
+  </EntityType>
+  <EntityType Name="Данные_по_подключению_абонентов">
+    <Key>
+      <PropertyRef Name="Порт" />
+    </Key>
+    <Property Name="Порт" Type="Int32" Nullable="false" />
+    <Property Name="Оборудование" Type="Int32" />
+    <Property Name="Адрес" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Тип_порта" Type="Int32" />
+    <Property Name="Имя" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Отчество" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Данные_по_оборудованию" Relationship="Self.FK_Данные_по_подключению_абонентов_Данные_по_оборудованию" FromRole="Данные_по_подключению_абонентов" ToRole="Данные_по_оборудованию" />
+    <NavigationProperty Name="Тип_оборудования" Relationship="Self.FK_Данные_по_подключению_абонентов_Тип_оборудования" FromRole="Данные_по_подключению_абонентов" ToRole="Тип_оборудования" />
+    <NavigationProperty Name="Тип_порта1" Relationship="Self.FK_Данные_по_подключению_абонентов_Тип_порта" FromRole="Данные_по_подключению_абонентов" ToRole="Тип_порта" />
+  </EntityType>
+  <EntityType Name="Пользователи">
+    <Key>
+      <PropertyRef Name="ID_пользователя" />
+    </Key>
+    <Property Name="ID_пользователя" Type="Int32" Nullable="false" />
+    <Property Name="Имя" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Отчество" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Номер" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Пароль" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Почта" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Номер_телефона" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Роль" Type="Int32" />
+    <NavigationProperty Name="Роли" Relationship="Self.FK_Пользователи_Роли" FromRole="Пользователи" ToRole="Роли" />
+  </EntityType>
+  <EntityType Name="Роли">
+    <Key>
+      <PropertyRef Name="ID_Роли" />
+    </Key>
+    <Property Name="ID_Роли" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Пользователи" Relationship="Self.FK_Пользователи_Роли" FromRole="Роли" ToRole="Пользователи" />
+  </EntityType>
+  <EntityType Name="Тип_оборудования">
+    <Key>
+      <PropertyRef Name="ID_типа_оборудования" />
+    </Key>
+    <Property Name="ID_типа_оборудования" Type="Int32" Nullable="false" />
+    <Property Name="Тип_оборудования1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Данные_по_оборудованию" Relationship="Self.FK_Данные_по_оборудованию_Тип_оборудования" FromRole="Тип_оборудования" ToRole="Данные_по_оборудованию" />
+    <NavigationProperty Name="Данные_по_подключению_абонентов" Relationship="Self.FK_Данные_по_подключению_абонентов_Тип_оборудования" FromRole="Тип_оборудования" ToRole="Данные_по_подключению_абонентов" />
+  </EntityType>
+  <EntityType Name="Тип_порта">
+    <Key>
+      <PropertyRef Name="ID_типа_порта" />
+    </Key>
+    <Property Name="ID_типа_порта" Type="Int32" Nullable="false" />
+    <Property Name="Тип_порта1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Данные_по_подключению_абонентов" Relationship="Self.FK_Данные_по_подключению_абонентов_Тип_порта" FromRole="Тип_порта" ToRole="Данные_по_подключению_абонентов" />
+  </EntityType>
+  <Association Name="FK_Данные_по_оборудованию_Тип_оборудования">
+    <End Role="Тип_оборудования" Type="Self.Тип_оборудования" Multiplicity="0..1" />
+    <End Role="Данные_по_оборудованию" Type="Self.Данные_по_оборудованию" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Тип_оборудования">
+        <PropertyRef Name="ID_типа_оборудования" />
+      </Principal>
+      <Dependent Role="Данные_по_оборудованию">
+        <PropertyRef Name="Тип" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Данные_по_подключению_абонентов_Данные_по_оборудованию">
+    <End Role="Данные_по_оборудованию" Type="Self.Данные_по_оборудованию" Multiplicity="0..1" />
+    <End Role="Данные_по_подключению_абонентов" Type="Self.Данные_по_подключению_абонентов" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Данные_по_оборудованию">
+        <PropertyRef Name="ID_оборудования" />
+      </Principal>
+      <Dependent Role="Данные_по_подключению_абонентов">
+        <PropertyRef Name="Оборудование" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Данные_по_подключению_абонентов_Тип_оборудования">
+    <End Role="Тип_оборудования" Type="Self.Тип_оборудования" Multiplicity="0..1" />
+    <End Role="Данные_по_подключению_абонентов" Type="Self.Данные_по_подключению_абонентов" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Тип_оборудования">
+        <PropertyRef Name="ID_типа_оборудования" />
+      </Principal>
+      <Dependent Role="Данные_по_подключению_абонентов">
+        <PropertyRef Name="Оборудование" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Данные_по_подключению_абонентов_Тип_порта">
+    <End Role="Тип_порта" Type="Self.Тип_порта" Multiplicity="0..1" />
+    <End Role="Данные_по_подключению_абонентов" Type="Self.Данные_по_подключению_абонентов" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Тип_порта">
+        <PropertyRef Name="ID_типа_порта" />
+      </Principal>
+      <Dependent Role="Данные_по_подключению_абонентов">
+        <PropertyRef Name="Тип_порта" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Пользователи_Роли">
+    <End Role="Роли" Type="Self.Роли" Multiplicity="0..1" />
+    <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Роли">
+        <PropertyRef Name="ID_Роли" />
+      </Principal>
+      <Dependent Role="Пользователи">
+        <PropertyRef Name="Роль" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Телеком_Нева_СвязьEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Данные_по_оборудованию" EntityType="Self.Данные_по_оборудованию" />
+    <EntitySet Name="Данные_по_подключению_абонентов" EntityType="Self.Данные_по_подключению_абонентов" />
+    <EntitySet Name="Пользователи" EntityType="Self.Пользователи" />
+    <EntitySet Name="Роли" EntityType="Self.Роли" />
+    <EntitySet Name="Тип_оборудования" EntityType="Self.Тип_оборудования" />
+    <EntitySet Name="Тип_порта" EntityType="Self.Тип_порта" />
+    <AssociationSet Name="FK_Данные_по_оборудованию_Тип_оборудования" Association="Self.FK_Данные_по_оборудованию_Тип_оборудования">
+      <End Role="Тип_оборудования" EntitySet="Тип_оборудования" />
+      <End Role="Данные_по_оборудованию" EntitySet="Данные_по_оборудованию" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Данные_по_подключению_абонентов_Данные_по_оборудованию" Association="Self.FK_Данные_по_подключению_абонентов_Данные_по_оборудованию">
+      <End Role="Данные_по_оборудованию" EntitySet="Данные_по_оборудованию" />
+      <End Role="Данные_по_подключению_абонентов" EntitySet="Данные_по_подключению_абонентов" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Данные_по_подключению_абонентов_Тип_оборудования" Association="Self.FK_Данные_по_подключению_абонентов_Тип_оборудования">
+      <End Role="Тип_оборудования" EntitySet="Тип_оборудования" />
+      <End Role="Данные_по_подключению_абонентов" EntitySet="Данные_по_подключению_абонентов" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Данные_по_подключению_абонентов_Тип_порта" Association="Self.FK_Данные_по_подключению_абонентов_Тип_порта">
+      <End Role="Тип_порта" EntitySet="Тип_порта" />
+      <End Role="Данные_по_подключению_абонентов" EntitySet="Данные_по_подключению_абонентов" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Пользователи_Роли" Association="Self.FK_Пользователи_Роли">
+      <End Role="Роли" EntitySet="Роли" />
+      <End Role="Пользователи" EntitySet="Пользователи" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="Sessia_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sessia_1"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="380" Width="620">
+    <Grid Opacity="0.985">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Cancel" Content="Отмена" HorizontalAlignment="Left" Margin="247,280,0,0" VerticalAlignment="Top" Width="51" Height="20" BorderBrush="#FFFDFBFB" Click="Cancel_Click"/>
+        <Button x:Name="Entrance" Content="Вход" HorizontalAlignment="Left" IsEnabled="False" Margin="322,280,0,0" VerticalAlignment="Top" Width="45" Height="20" BorderBrush="#FFF9F9F9"  />
+        <Label Content="Номер" HorizontalAlignment="Left" Margin="195,138,0,0" VerticalAlignment="Top" Height="26" Width="47"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="195,169,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
+        <Label Content="Код" HorizontalAlignment="Left" Margin="195,195,0,0" VerticalAlignment="Top" Height="26" Width="34"/>
+        <Label Content="Телеком Нева Связь" HorizontalAlignment="Left" Margin="63,45,0,0" VerticalAlignment="Top" Height="40" Width="227" FontSize="22" RenderTransformOrigin="0.427,0.625"/>
+        <Button x:Name="Update" HorizontalAlignment="Left" Margin="360,198,0,0" VerticalAlignment="Top" Width="24" BorderBrush="#FFFFFDFD" Height="23" Background="White" Click="Update_Click_1">
+            <Image Source="/Resources/image/Update_code.jpg" Height="20" Width="30" OpacityMask="#FF4D1919" />
+        </Button>
+        <Image Source="/Resources/image/logo.jpg" Margin="431,0,-29,219" />
+        <TextBox Name="NumbeR" HorizontalAlignment="Left" Height="20" Margin="247,143,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="143" RenderTransformOrigin="0.2,0.522" KeyUp="NumbeR_KeyUp"/>
+        <TextBox Name="Password" HorizontalAlignment="Left" IsEnabled="False" Height="20" Margin="247,172,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="143" KeyUp="Password_KeyUp"/>
+        <TextBox Name="Code" HorizontalAlignment="Left" IsEnabled="False" Height="19" Margin="247,202,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="106" KeyUp="Code_KeyUp"/>
+    </Grid>
+</Window>

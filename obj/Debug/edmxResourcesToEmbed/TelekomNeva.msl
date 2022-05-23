@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище TelekomNevaContainer" CdmEntityContainer="Телеком_Нева_СвязьEntities1">
+    <EntitySetMapping Name="Данные_по_оборудованию">
+      <EntityTypeMapping TypeName="TelekomNeva.Данные_по_оборудованию">
+        <MappingFragment StoreEntitySet="Данные по оборудованию">
+          <ScalarProperty Name="ID_оборудования" ColumnName="ID оборудования" />
+          <ScalarProperty Name="Наименование_оборудования" ColumnName="Наименование оборудования" />
+          <ScalarProperty Name="Тип" ColumnName="Тип" />
+          <ScalarProperty Name="Серийный_номер" ColumnName="Серийный номер" />
+          <ScalarProperty Name="MAC_адрес" ColumnName="MAC-адрес" />
+          <ScalarProperty Name="IP_адрес" ColumnName="IP-адрес" />
+          <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+          <ScalarProperty Name="Дата_установки" ColumnName="Дата установки" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Данные_по_подключению_абонентов">
+      <EntityTypeMapping TypeName="TelekomNeva.Данные_по_подключению_абонентов">
+        <MappingFragment StoreEntitySet="Данные по подключению абонентов">
+          <ScalarProperty Name="Порт" ColumnName="Порт" />
+          <ScalarProperty Name="Оборудование" ColumnName="Оборудование" />
+          <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+          <ScalarProperty Name="Тип_порта" ColumnName="Тип порта" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Пользователи">
+      <EntityTypeMapping TypeName="TelekomNeva.Пользователи">
+        <MappingFragment StoreEntitySet="Пользователи">
+          <ScalarProperty Name="ID_пользователя" ColumnName="ID пользователя" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Номер" ColumnName="Номер" />
+          <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+          <ScalarProperty Name="Почта" ColumnName="Почта" />
+          <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+          <ScalarProperty Name="Роль" ColumnName="Роль" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Роли">
+      <EntityTypeMapping TypeName="TelekomNeva.Роли">
+        <MappingFragment StoreEntitySet="Роли">
+          <ScalarProperty Name="ID_Роли" ColumnName="ID Роли" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Тип_оборудования">
+      <EntityTypeMapping TypeName="TelekomNeva.Тип_оборудования">
+        <MappingFragment StoreEntitySet="Тип оборудования">
+          <ScalarProperty Name="ID_типа_оборудования" ColumnName="ID типа оборудования" />
+          <ScalarProperty Name="Тип_оборудования1" ColumnName="Тип оборудования" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Тип_порта">
+      <EntityTypeMapping TypeName="TelekomNeva.Тип_порта">
+        <MappingFragment StoreEntitySet="Тип порта">
+          <ScalarProperty Name="ID_типа_порта" ColumnName="ID типа порта" />
+          <ScalarProperty Name="Тип_порта1" ColumnName="Тип порта" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
